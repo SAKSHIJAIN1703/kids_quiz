@@ -46,19 +46,20 @@ export default function App() {
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
 
-	const handleAnswerOptionClick = (isCorrect) => {
+	const handleAnswerOptionClick = (isCorrect,e) => {
 	
 		if (isCorrect) {
 			setScore(score + 1);
-			// e.target.classList.add(isCorrect?"corresct":"incorrect")
-		
+			e.target.classList.add(isCorrect ? "correct" : "incorrect");
+		}
 		const nextQuestion = currentQuestion + 1;
 		
 		if (nextQuestion < questions.length) {
 			setCurrentQuestion(nextQuestion);
 		} else {
+			
 			setShowScore(true);
-		}}
+		}
 		
 	
 
@@ -82,7 +83,7 @@ export default function App() {
 					</div>
 					<div className='answer-section'>
 						{questions[currentQuestion].answerOptions.map((answerOption) => (
-							<button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+							<button onClick={(e) => handleAnswerOptionClick(answerOption.isCorrect,e)}>{answerOption.answerText}</button>
 						))}
 					</div>
 				</>
