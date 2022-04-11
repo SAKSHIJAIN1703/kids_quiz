@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import { StQuizGeneral } from './QuizGeneralStyle';
+// import popup  from 'react-popup';
+// import ReactDom from 'react-dom';
 export default function App() {
 	const questions = [
 		{
@@ -47,11 +49,11 @@ export default function App() {
 	const [score, setScore] = useState(0);
 
 	const handleAnswerOptionClick = (isCorrect,e) => {
-	
+		// e.target.classList.add(isCorrect ? "correct" : "incorrect");
 		if (isCorrect) {
-			setScore(score + 1);
-			e.target.classList.add(isCorrect ? "correct" : "incorrect");
-		}
+			setScore(score);
+		
+	
 		const nextQuestion = currentQuestion + 1;
 		
 		if (nextQuestion < questions.length) {
@@ -59,26 +61,40 @@ export default function App() {
 		} else {
 			
 			setShowScore(true);
+		
 		}
-		
 	
+	}
+	else{
+		alert("Choose Correct Answer")
+	}
+		
 
-		
-	
 	};
+	//isme do l{og ek sath kr skte na? hum kr to rhe h meri bhondu
+	//acga hao rukja meri ma 1 min
+	// if (showScore)
+	// const Quiz=()=>{
+	// 	codekhooooooooooooooooooooooooooooooooooooooooooooo
+	// }
+
 	return (
     <StQuizGeneral>
 		<div className='app'>
 			{showScore ? (
 				<div className='score-section'>
 					You scored {score} out of {questions.length}
+
+					{/* 78 */}
 				</div>
+				
 			) : (
 				<>
 					<div className='question-section'>
 						<div className='question-count'>
 							<span>Question {currentQuestion + 1}</span>/{questions.length}
 						</div>
+						{/* <button onClick={()=>(window.location.href="/")}></button> */}
 						<div className='question-text'>{questions[currentQuestion].questionText}</div>
 					</div>
 					<div className='answer-section'>
