@@ -35,7 +35,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   margin: auto;
-  margin-top:200px;
+  margin-top:150px;
 }
 
 .score-section {
@@ -92,12 +92,25 @@ button {
   align-items: center;
   border: 2px solid #60676e;
   cursor: pointer;
+  margin-top: 8px;
 }
-
+.btn{
+  color:#faf3f3;
+    align-items: center;
+    text-align:center;
+    padding: 15px;
+    font-size: 20px;
+}
 .correct {
   background-color: #2f922f;
 }
+h2{
+  color:#faf3f3;
+  background: transparent;
+  text-shadow: 0 2px 2px black;
+  font-size:35px
 
+}
 .incorrect {
   background-color: #ff3333;
 }
@@ -114,8 +127,8 @@ button svg {
   margin-right: 5px;
 }
 img{
-  height: auto;
-  width: 200px;
+  height: 200px;
+  width: 300px;
   border-radius: 15px;
 }
 

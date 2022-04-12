@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import { Routes, Route } from 'react-router-dom';
+import {Route,Routes} from "react-router-dom";
 import  Login  from './components/login/Login';
 import  Welcome  from './components/welcome/Welcome';
 import  QuizGeneral  from './components/quizGeneral/QuizGeneral';
@@ -15,13 +15,21 @@ const App = () => {
 
   return (
     <div className='app'>
-      <Routes>
-      
-        <Route exact path="/" element={<Login onHandlePlayerName={handlePlayerName} />}/>
-        <Route path="/welcome" element={<Welcome playerName={playerName}/>}/>
-         <Route path="/general" element={<QuizGeneral />}/>
-        
-      </Routes>
+  
+      {/* <Welcome playerName={playerName}/>
+       */}
+       <Routes>
+         
+       <Route exact path="/" element={<Login onHandlePlayerName={handlePlayerName} />}/>
+       <Route path="/welcome" element={<Welcome playerName={playerName}/>}/>
+      <Route path="/general" element={<QuizGeneral playerName={playerName}/>}/>
+
+       </Routes>
+
+
+       
+       
+     
     </div>
   )
 };
