@@ -1,8 +1,11 @@
 
 
 
+
+
 import React, { useState, useEffect } from 'react';
 import { StQuizGeneral } from './QuizGeneralStyle';
+import ErrorPopup from '../ErrorPopup';
 
 // import popup  from 'react-popup';
 // import ReactDom from 'react-dom';
@@ -124,14 +127,16 @@ const QuizGeneral = ({ playerName }) => {
 	console.log(currentQuestion, questions[currentQuestion], questionsAsked)
 
 
-	useEffect(() => {
+	useEffect(() => initialSetup, [])
+
+	const initialSetup = () => {
 		let question = null;
 		do {
 			question = Math.floor(Math.random() * 10) + 1;
 		} while (question >= 10 || questionsAsked.includes(question))
 		setCurrentQuestion(question)
 		setQuestionsAsked([...questionsAsked, currentQuestion])
-	}, [])
+	}
 
 
 	//     const radiosWrapper=useRef();
@@ -156,7 +161,7 @@ const QuizGeneral = ({ playerName }) => {
 
 			do {
 				nextQuestion = Math.floor(Math.random() * 10) + 1;
-			} while (nextQuestion == currentQuestion && !questionsAsked.includes(nextQuestion))
+			} while (nextQuestion >= 10 || nextQuestion == currentQuestion || questionsAsked.includes(nextQuestion))
 
 			setQuestionsAsked([...questionsAsked, nextQuestion])
 
@@ -175,7 +180,10 @@ const QuizGeneral = ({ playerName }) => {
 			// alert("Choose Correct Answer");
 			setWrongAns(1);
 
-			
+			<ErrorPopup trigger={true}>
+
+			</ErrorPopup>
+
 			// if(incorrectAttempts)
 			const temp = incorrectAttempts
 			if (incorrectAttempts.length > 0 && incorrectAttempts.length == questionCount + 1)
@@ -185,103 +193,19 @@ const QuizGeneral = ({ playerName }) => {
 			console.log(temp, incorrectAttempts.length, questionCount)
 			setIncorrectAttempts(temp)
 
-			// questions[currentQuestion].answerOptions.map((fst, poo) => {
-
-			// 	// console.log(pune.answerText);
-
-			// 	if (fst.id === 1) {
-
-			// 		setFirst(first + 1)
-
-			// 	}
-
-
-			// })
-			// // ====
-			// questions[currentQuestion].answerOptions.map((sco, oo) => {
-
-			// 	if (sco.id === 2) {
-			// 		setSecond(second + 1)
-			// 	}
-
-			// })
-			// // ====
-			// questions[currentQuestion].answerOptions.map((fif, op) => {
-
-			// 	if (fif.id === 2) {
-			// 		setfifth(fifth + 1)
-			// 	}
-
-			// })
-			// // ====
-			// questions[currentQuestion].answerOptions.map((six, oa) => {
-
-			// 	if (six.id === 2) {
-			// 		setsixth(sixth + 1)
-			// 	}
-
-			// })
-			// // ====
-			// questions[currentQuestion].answerOptions.map((sev, oa) => {
-
-			// 	if (sev.id === 2) {
-			// 		setseventh(seventh + 1)
-			// 	}
-
-			// })
-			// // ====
-			// questions[currentQuestion].answerOptions.map((eig, os) => {
-
-			// 	if (eig.id === 2) {
-			// 		seteighth(eight + 1)
-			// 	}
-
-			// })
-			// // ====
-			// questions[currentQuestion].answerOptions.map((nin, od) => {
-
-			// 	if (nin.id === 2) {
-			// 		setninth(ninth + 1)
-			// 	}
-
-			// })
-			// // ====
-			// questions[currentQuestion].answerOptions.map((ten, of) => {
-
-			// 	if (ten.id === 2) {
-			// 		settenth(tenth + 1)
-			// 	}
-
-			// })
-			// // ====
-			// questions[currentQuestion].answerOptions.map((thi, oi) => {
-			// 	if (thi.id === 3) {
-			// 		setThrird(third + 1)
-			// 	}
-
-			// })
-			// // ===
-			// questions[currentQuestion].answerOptions.map((rth, pooii) => {
-			// 	if (rth.id === 4) {
-			// 		setForth(forth + 1)
-
-
-			// 	}
-
-			// })
 		}
 
 
 	};
 
 
-
-	// }
 	const resetQuiz = () => {
-		setCurrentQuestion(Math.floor(Math.random() * 10) + 1);
 		setScore(0);
 		setShowScore(false);
-		setQuestionCount(0)
+		let nextQuestion;
+		do {
+			nextQuestion = Math.floor(Math.random() * 10) + 1;
+		} while (nextQuestion >= 10 || nextQuestion == currentQuestion || questionsAsked.includes(nextQuestion))
 		setQuestionCount(0)
 		setQuestionsAsked([])
 		setIncorrectAttempts([])
