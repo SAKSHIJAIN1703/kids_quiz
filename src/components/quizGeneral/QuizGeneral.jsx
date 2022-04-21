@@ -64,7 +64,7 @@ const QuizGeneral = ({ playerName }) => {
 				{ id: 6, answerText: 'cat', isCorrect: false },
 				{ id: 6, answerText: 'horse', isCorrect: false },
 				{ id: 6, answerText: 'dog', isCorrect: false },
-				{ answerText: 'lion', isCorrect: true },
+				{ id: 6, answerText: 'lion', isCorrect: true },
 			],
 		},
 		{
